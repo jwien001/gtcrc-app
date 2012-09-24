@@ -20,15 +20,12 @@ $(function() {
 		             '12pm', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
 		$.jqplot('chartdiv',  data, {
 			seriesDefaults: {
-	        	renderer:$.jqplot.BarRenderer,
-	        	rendererOptions: {
-	        		barDirection: 'horizontal'
-	        	},
-	        	pointLabels: {show: true}
+	        	renderer: $.jqplot.BarRenderer
 	        },
+	        series:[{label:'Busyness'}],
 			axes: {
 	            // Use a category axis on the x axis and use custom ticks
-	            yaxis: {
+	            xaxis: {
 	                renderer: $.jqplot.CategoryAxisRenderer,
 	                ticks: ticks
 	            }
