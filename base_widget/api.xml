@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <api>
 	<description>
-		<![CDATA[This is an API to interact with all the simple items]]>
+		<![CDATA[This is an API to interact with the back-end of the CRC app]]>
 	</description>
 	
 	<command id='simple' security='public'>
@@ -26,5 +26,17 @@
 			<description><![CDATA[This is how you can delete a simple item]]></description>
 			<action file='simple.php'><![CDATA[deleteItem($_REST['simple']);]]></action>
 		</delete>
+	</command>
+	
+	<command id='busyness' security='public'>
+		<description><![CDATA[This API lets you interact with the CRC busyness DB]]></description>
+		<index>
+			<description><![CDATA[This is how you can get the current CRC busyness.]]></description>
+			<action file='busyness.php'><![CDATA[getCurrentBusyness();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get the average busyness per hour on a particular day of the week.]]></description>
+			<action file='busyness.php'><![CDATA[getAvgHourlyBusynessOnDay($_REST['day']);]]></action>
+		</get>
 	</command>
 </api>
