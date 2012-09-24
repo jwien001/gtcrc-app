@@ -8,9 +8,7 @@
             <a href="#busyness_page" data-transition="fade">
                 How busy is it?
             </a>
-            <span style="color: green; padding-left: 2em">
-                Not busy
-            </span>
+            <span id="busyness_indicator"></span>
         </div>
         <div data-role="fieldcontain">
             <fieldset data-role="controlgroup">
@@ -47,5 +45,24 @@
     
     <div data-role="content" style="padding: 15px">
         <div>In progress...</div>
+    </div>
+</div>
+
+<div data-role="dialog" id="error_dialog" >
+    <div data-role="header" data-position="inline" data-theme='d'>
+        <h1 role="heading">Error</h1>
+    </div>
+    <div id="error_dialog_content" data-role="content">
+        <script id="error_message_template" type="text/x-jquery-tmpl">
+            <div id="error_message">
+                <center>
+                    <p> 
+                        An unexpected error occurred<br />
+                        <span id="errorName">${errorName}</span><br />
+                        <span id="errorDescription">${errorDescription}</span>
+                    </p>
+                </center>
+            </div>
+        </script>
     </div>
 </div>

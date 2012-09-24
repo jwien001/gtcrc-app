@@ -1,3 +1,11 @@
+/**
+ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ * DO NOT USE
+ * This is left here as a reference.
+ * Please put all actual JavaScript code in app.js
+ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ */
+
 function simpleIndex(){
 	$.ajax({
 		url: "api/simple",
