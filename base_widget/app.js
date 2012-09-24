@@ -14,15 +14,15 @@ $(function() {
 	
 	$('#busyness_page').bind('pagebeforeshow', function(event, ui) {
 		//TODO Get data from server
-		var data = [0, 0, 0, 0, 0, 1, 1, 3, 4, 6, 7, 6,
-                    6, 5, 9, 8, 9, 6, 5, 7, 8, 6, 4, 3];
+		var data = [[0, 0, 0, 0, 0, 1, 1, 3, 4, 6, 7, 6,
+		             6, 5, 9, 8, 9, 6, 5, 7, 8, 6, 4, 3]];
 		var ticks = ['12am', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
 		             '12pm', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
 		$.jqplot('chartdiv',  data, {
-			seriesDefaults: {
-				renderer:$.jqplot.BarRenderer
-			},
-			series: [{label: 'Busyness'}],
+//			seriesDefaults: {
+				renderer:$.jqplot.BarRenderer,
+//			},
+//			series: [{label: 'Busyness'}],
 			axes: {
 	            // Use a category axis on the x axis and use custom ticks
 	            xaxis: {
