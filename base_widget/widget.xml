@@ -4,6 +4,7 @@
     <library name="gtmob"/>
 
 	<html file="app.html"/>
-	<!--<javascript file="app.js"/>-->
+	<javascript file="app.js"/>
+    <css file="app.css"/>
 	<library name="jquery.mobile"/>
 </widget>
