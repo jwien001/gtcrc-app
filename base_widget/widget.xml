@@ -2,9 +2,13 @@
 <widget title="Sample Widget">
     <library name="jquery"/>
     <library name="gtmob"/>
+    
+    <javascript file="jquery.jqplot.js"/>
+    <css file="jquery.jqplot.css"/>
 
 	<html file="app.html"/>
 	<javascript file="app.js"/>
     <css file="app.css"/>
+    
 	<library name="jquery.mobile"/>
 </widget>

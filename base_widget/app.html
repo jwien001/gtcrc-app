@@ -44,7 +44,13 @@
     </div>
     
     <div data-role="content" style="padding: 15px">
-        <div>In progress...</div>
+        <div>
+            <span>
+                How busy is it?
+            </span>
+            <span id="busyness_indicator"></span>
+        </div>        
+        <div id="chartdiv" style="height:400px;width:300px; "></div>
     </div>
 </div>
 
@@ -52,17 +58,5 @@
     <div data-role="header" data-position="inline" data-theme='d'>
         <h1 role="heading">Error</h1>
     </div>
-    <div id="error_dialog_content" data-role="content">
-        <script id="error_message_template" type="text/x-jquery-tmpl">
-            <div id="error_message">
-                <center>
-                    <p> 
-                        An unexpected error occurred<br />
-                        <span id="errorName">${errorName}</span><br />
-                        <span id="errorDescription">${errorDescription}</span>
-                    </p>
-                </center>
-            </div>
-        </script>
-    </div>
+    <div id="error_dialog_content" data-role="content"></div>
 </div>
