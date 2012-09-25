@@ -4,6 +4,8 @@
     <library name="gtmob"/>
     
     <javascript file="jquery.jqplot.js"/>
+    <javascript file="jqplot.barRenderer.js"/>
+    <javascript file="jqplot.categoryAxisRenderer.js"/>
     <css file="jquery.jqplot.css"/>
 
 	<html file="app.html"/>
