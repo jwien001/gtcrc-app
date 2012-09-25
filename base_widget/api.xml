@@ -36,7 +36,7 @@
 		</index>
 		<get>
 			<description><![CDATA[This is how you can get the average busyness per hour on a particular day of the week.]]></description>
-			<action file='busyness.php'><![CDATA[getAvgHourlyBusynessOnDay($_REST['day']);]]></action>
+			<action file='busyness.php'><![CDATA[getAvgHourlyBusynessOnDay($_REST['busyness']);]]></action>
 		</get>
 	</command>
 </api>

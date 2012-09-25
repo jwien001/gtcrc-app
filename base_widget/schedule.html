@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>
+        </title>
+
+        <!--CSS Links-->
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+        <link rel="stylesheet" href="schedule.css" />
+        
+        <!--JQuery Mobile Links-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js">
+        </script>
+
+        <!--Java script Links-->
+        <script src="schedule.js"> </script>
+    </head>
+    <body>
+        <!-- Schedule List Page -->
+        <div data-role="page" id="ScheduleList">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    CRC Class Schedule
+                </h3>
+                <a href="" data-icon="home" class="ui-btn-left">Home</a>
+            </div>
+            <div data-role="content" data-theme = "b" style="padding: 15px">
+                <div data-role="fieldcontain">
+                    <label for="name">Sort By</label>
+                    <fieldset data-role="controlgroup" data-type="horizontal">
+                        <a href="#ScheduleList" data-role="button" data-transition="flip"> 
+                            Schedule View
+                        </a>
+                        <a href="#ClassList" data-role="button" data-transition="flip"> Class View
+                        </a>
+                    </fieldset>
+                </div>
+                <script>injectSchedule();</script>
+                <a data-role="button" data-transition="fade" href="#ScheduleList">
+                    Home
+                </a>
+            </div>
+        </div>
+
+        <!-- Class List Page -->
+        <div data-role="page" id="ClassList">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    CRC Class List
+                </h3>
+                <a href="" data-icon="home" class="ui-btn-left">Home</a>
+            </div>
+            <div data-role="content" data-theme = "b" style="padding: 15px">
+                <div data-role="fieldcontain">
+                    <label for="name">Sort By</label>
+                    <fieldset data-role="controlgroup" data-type="horizontal">
+                        <a href="#ScheduleList" data-role="button" data-transition="flip"> 
+                            Schedule View
+                        </a>
+                        <a href="#ClassList" data-role="button" data-transition="flip"> Class View
+                        </a>
+                    </fieldset>
+                </div>
+                <ul data-role="listview" data-divider-theme="b" data-inset="true">
+                    <li data-role="list-divider" role="heading">
+                        G.I.T Fit Classes
+                    </li>
+                    <script>
+                        injectGITFitClasses();
+                    </script>
+                    
+                    <li data-role="list-divider" role="heading">
+                        Instructional Classes
+                    </li>
+                    <script>
+                        injectInstructionalClasses();
+                    </script>
+                </ul>
+                <a data-role="button" data-transition="fade" href="">
+                    Home
+                </a>
+            </div>
+        </div>
+
+                <!-- Schedule List Page -->
+        <div data-role="page" id="Dialog">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    Dialog!!
+                </h3>
+            </div>
+            <div data-role="content" data-theme = "b" style="padding: 15px">
+                <a href="" data-rel="back" data-role="button" data-transition="slide">Close</a> 
+            </div>
+        </div>
+    </body>
+</html>
