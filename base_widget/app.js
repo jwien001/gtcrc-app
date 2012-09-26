@@ -13,12 +13,23 @@ $(function() {
 	});
 	
 	$('#busyness_page').bind('pagebeforeshow', function(event, ui) {
+		var dayOfWeek = (new Date()).getDay();
+		//Adjust the day of week to match the format used on the server (1 = Monday, 2 = Tuesday,..., 7 = Sunday)
+		if (dayOfWeek === 0)
+			dayOfWeek = 7;
+		//Select the button for the current day
+		$('input:radio[name=busynessDate]').filter('[value=' + dayOfWeek + ']').next().click();		
+	});
+	
+	$('input:radio[name=busynessDate]').bind("change", function(event, ui) {		
+		var dayOfWeek = $('input:radio[name=busynessDate]:checked').val();
 		//TODO Get data from server
 		var data = [0, 0, 0, 0, 0, 1, 1, 3, 4, 6, 7, 6,
-		             6, 5, 9, 8, 9, 6, 5, 7, 8, 6, 4, 3];
+		             6, 5, 9, dayOfWeek, 9, 6, 5, 7, 8, 6, 4, 3];
 		var ticks = ['12am', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
 		             '12pm', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
 		$.jqplot('chartdiv',  [data.reverse()], {
+			animate: true,
 			seriesDefaults: {
 	        	renderer: $.jqplot.BarRenderer,
                 rendererOptions: {
@@ -37,7 +48,8 @@ $(function() {
 	                ticks: ticks.reverse()
 	            }
 	        }
-		});
+		}).replot({clear: true, resetAxes:true});
+		
 	});
 });
 
