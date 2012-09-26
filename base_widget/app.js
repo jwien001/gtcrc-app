@@ -5,14 +5,14 @@ $(function() {
     		context: document.body,
             success: function(data, textStatus, jqXHR) {
                     console.log(data);
-                    $('.busyness_indicator').attr('class', 'notBusy');
+                    $('.busyness_indicator').attr('class', 'busyness_indicator notBusy');
                     $('.busyness_indicator').html('Not Busy');
             },
             error: ajaxError
 		});
 	});
 	
-	$('#busyness_page').bind('pagebeforeshow', function(event, ui) {
+	$('#busyness_page').bind('pageshow', function(event, ui) {
 		var dayOfWeek = (new Date()).getDay();
 		//Adjust the day of week to match the format used on the server (1 = Monday, 2 = Tuesday,..., 7 = Sunday)
 		if (dayOfWeek === 0)
@@ -28,7 +28,8 @@ $(function() {
 		             6, 5, 9, dayOfWeek, 9, 6, 5, 7, 8, 6, 4, 3];
 		var ticks = ['12am', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
 		             '12pm', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
-		$.jqplot('chartdiv',  [data.reverse()], {
+		var firstTime = $('#chartdiv').children().length === 0;
+		var chart = $.jqplot('chartdiv',  [data.reverse()], {
 			animate: true,
 			seriesDefaults: {
 	        	renderer: $.jqplot.BarRenderer,
@@ -48,8 +49,10 @@ $(function() {
 	                ticks: ticks.reverse()
 	            }
 	        }
-		}).replot({clear: true, resetAxes:true});
+		});
 		
+		if (!firstTime)
+			chart.replot({clear: true, resetAxes:true});
 	});
 });
 
