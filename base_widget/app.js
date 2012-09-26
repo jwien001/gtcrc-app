@@ -5,8 +5,8 @@ $(function() {
     		context: document.body,
             success: function(data, textStatus, jqXHR) {
                     console.log(data);
-                    $('#busyness_indicator').attr('class', 'notBusy');
-                    $('#busyness_indicator').html('Not Busy');
+                    $('.busyness_indicator').attr('class', 'notBusy');
+                    $('.busyness_indicator').html('Not Busy');
             },
             error: ajaxError
 		});
