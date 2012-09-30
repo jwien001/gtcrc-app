@@ -39,4 +39,17 @@
 			<action file='busyness.php'><![CDATA[getAvgHourlyBusynessOnDay($_REST['busyness']);]]></action>
 		</get>
 	</command>
+	
+	<command id='schedule' security='public'>
+		<description><![CDATA[This API lets you interact with the CRC class schedule DB]]></description>
+		<index>
+			<description><![CDATA[This is how you can get the information about all the classes.]]></description>
+			<action file='schedule.php'><![CDATA[getAllClassInfo();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get the info about a particular class by name.]]></description>
+			<action file='schedule.php'><![CDATA[getClassInfoByName($_REST['schedule']);]]></action>
+		</get>
+	</command>
+	
 </api>
