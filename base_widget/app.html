@@ -8,7 +8,7 @@
             <a href="#busyness_page" data-transition="fade">
                 How busy is it?
             </a>
-            <span id="busyness_indicator"></span>
+            <span class="busyness_indicator"></span>
         </div>
         <div data-role="fieldcontain">
             <fieldset data-role="controlgroup">
@@ -48,8 +48,30 @@
             <span>
                 How busy is it?
             </span>
-            <span id="busyness_indicator"></span>
+            <span class="busyness_indicator"></span>
         </div>        
+        <fieldset data-role="controlgroup" data-type="horizontal">
+            <input type="radio" name="busynessDate" id="monButton" value="1"/>
+            <label for="monButton">Mon</label>
+            
+            <input type="radio" name="busynessDate" id="tuesButton" value="2"/>
+            <label for="tuesButton">Tues</label>
+            
+            <input type="radio" name="busynessDate" id="wedButton" value="3"/>
+            <label for="wedButton">Wed</label>
+            
+            <input type="radio" name="busynessDate" id="thursButton" value="4"/>
+            <label for="thursButton">Thurs</label>
+            
+            <input type="radio" name="busynessDate" id="friButton" value="5"/>
+            <label for="friButton">Fri</label>
+            
+            <input type="radio" name="busynessDate" id="satButton" value="6"/>
+            <label for="satButton">Sat</label>
+            
+            <input type="radio" name="busynessDate" id="sunButton" value="7"/>
+            <label for="sunButton">Sun</label>
+        </fieldset>
         <div id="chartdiv"></div>
     </div>
 </div>
