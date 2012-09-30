@@ -70,3 +70,14 @@ function Class(name, day) {
     this.name = name;
     this.day = day;
 }
+
+//Need to reload tables.
+function switchToScheduleView() {
+    alert("Change to Schedule View.");
+    element = document.getElementById('PageHeader');
+    element.innerHTML = "<h3>Does this work?</h3>";
+}
+
+function switchToClassView() {
+    alert("switch to class view");
+}

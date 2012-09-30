@@ -21,72 +21,33 @@
     </head>
     <body>
         <!-- Schedule List Page -->
-        <div data-role="page" id="ScheduleList">
+        <div data-role="page" id="DisplayPage">
             <div data-theme="a" data-role="header">
-                <h3>
-                    CRC Class Schedule
-                </h3>
+                <div data-theme="a" data-role="header" id="PageHeader">
+                    <h3>
+                        CRC Class Schedule
+                    </h3>
+                </div>
                 <a href="" data-icon="home" class="ui-btn-left">Home</a>
             </div>
             <div data-role="content" data-theme = "b" style="padding: 15px">
                 <div data-role="fieldcontain">
                     <label for="name">Sort By</label>
                     <fieldset data-role="controlgroup" data-type="horizontal">
-                        <a href="#ScheduleList" data-role="button" data-transition="flip"> 
+                        <a href="#ScheduleList" data-role="button" data-transition="flip" onclick="switchToScheduleView(); return false;"> 
                             Schedule View
                         </a>
-                        <a href="#ClassList" data-role="button" data-transition="flip"> Class View
+                        <a href="#ClassList" data-role="button" data-transition="flip" onclick="switchToClassView(); return false;"> Class View
                         </a>
                     </fieldset>
                 </div>
-                <script>injectSchedule();</script>
-                <a data-role="button" data-transition="fade" href="#ScheduleList">
-                    Home
-                </a>
-            </div>
-        </div>
-
-        <!-- Class List Page -->
-        <div data-role="page" id="ClassList">
-            <div data-theme="a" data-role="header">
-                <h3>
-                    CRC Class List
-                </h3>
-                <a href="" data-icon="home" class="ui-btn-left">Home</a>
-            </div>
-            <div data-role="content" data-theme = "b" style="padding: 15px">
-                <div data-role="fieldcontain">
-                    <label for="name">Sort By</label>
-                    <fieldset data-role="controlgroup" data-type="horizontal">
-                        <a href="#ScheduleList" data-role="button" data-transition="flip"> 
-                            Schedule View
-                        </a>
-                        <a href="#ClassList" data-role="button" data-transition="flip"> Class View
-                        </a>
-                    </fieldset>
+                <div data-theme="b" id="ScheduleTable">
+                    <script>injectSchedule();</script>
                 </div>
-                <ul data-role="listview" data-divider-theme="b" data-inset="true">
-                    <li data-role="list-divider" role="heading">
-                        G.I.T Fit Classes
-                    </li>
-                    <script>
-                        injectGITFitClasses();
-                    </script>
-                    
-                    <li data-role="list-divider" role="heading">
-                        Instructional Classes
-                    </li>
-                    <script>
-                        injectInstructionalClasses();
-                    </script>
-                </ul>
-                <a data-role="button" data-transition="fade" href="">
-                    Home
-                </a>
             </div>
         </div>
 
-                <!-- Schedule List Page -->
+        <!-- Schedule List Page -->
         <div data-role="page" id="Dialog">
             <div data-theme="a" data-role="header">
                 <h3>
