@@ -20,7 +20,7 @@ var instClasses = [new Class("H.E.A.T Boxing", "Sunday"),
 function injectGITFitClasses() {
     for(i = 0; i < gfClasses.length; i++) {
         var cl = gfClasses[i];
-        document.write('<li data-theme="a"> <a href="#Dialog" data-transition="slide">' + cl.name + '</a> </li>');
+        document.write('<li data-theme="a"> <a data-transition="slide" onclick=showDialog(); return true;>' + cl.name + '</a> </li>');
     }
 }
 
@@ -28,7 +28,7 @@ function injectGITFitClassesForDay(gfDay) {
         for(gf = 0; gf < gfClasses.length; gf++) {
         var gfcl = gfClasses[gf];
         if(gfcl.day == gfDay) {
-            document.write('<li data-theme="a"> <a href="#Dialog" data-rel="dialog" data-transition="slide">' + gfcl.name + '</a> </li>');
+            document.write('<li data-theme="a"> <a data-rel="dialog" data-transition="slide" onclick=showDialog(); return true;>' + gfcl.name + '</a> </li>');
         }
     }
 }
@@ -36,7 +36,7 @@ function injectGITFitClassesForDay(gfDay) {
 function injectInstructionalClasses() {
     for(i = 0; i < instClasses.length; i++) {
         var cl = instClasses[i];
-        document.write('<li data-theme="a"> <a href="#Dialog" data-rel="dialog" data-transition="slide">' + cl.name + '</a> </li>');
+        document.write('<li data-theme="a"> <a data-rel="dialog" data-transition="slide onclick=showDialog(); return true;">' + cl.name + '</a> </li>');
     }
 }
 
@@ -44,7 +44,7 @@ function injectInstructionalClassesForDay(instDay) {
     for(ic = 0; ic < instClasses.length; ic++) {
         var instcl = instClasses[ic];
         if(instcl.day == instDay) {
-            document.write('<li data-theme="a"> <a href="#Dialog" data-transition="slide">' + instcl.name + '</a> </li>');
+            document.write('<li data-theme="a"> <a data-transition="slide onclick=showDialog(); return true;">' + instcl.name + '</a> </li>');
         }
     }
 }
@@ -73,11 +73,23 @@ function Class(name, day) {
 
 //Need to reload tables.
 function switchToScheduleView() {
-    alert("Change to Schedule View.");
-    element = document.getElementById('PageHeader');
-    element.innerHTML = "<h3>Does this work?</h3>";
+    element = document.getElementById('ClassTable');
+    element.innerHTML = "<h3>Draw Schedule here.</h3>";
+
+    //Need to redraw the Table.
 }
 
 function switchToClassView() {
-    alert("switch to class view");
+    element = document.getElementById('ClassTable');
+    element.innerHTML = "<h3>Draw Class List here.</h3>";
+
+    //Need to redraw the Table.
+}
+
+function showDialog() {
+    element = document.getElementById('CNameHeader');
+    element.innerHTML = "<h3>Class name here</h3>";
+    element = document.getElementById('DialogData');
+    element.innerHTML = "Class details here";
+    $.mobile.changePage("#Dialog", "pop", true, true);
 }

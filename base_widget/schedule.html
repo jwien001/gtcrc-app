@@ -20,41 +20,49 @@
         <script src="schedule.js"> </script>
     </head>
     <body>
-        <!-- Schedule List Page -->
+        <!-- Index Page -->
         <div data-role="page" id="DisplayPage">
-            <div data-theme="a" data-role="header">
-                <div data-theme="a" data-role="header" id="PageHeader">
-                    <h3>
-                        CRC Class Schedule
-                    </h3>
-                </div>
+            <div data-theme="a" data-role="header" id="PageHeader">
+                <h3>
+                    CRC Classes
+                </h3>
                 <a href="" data-icon="home" class="ui-btn-left">Home</a>
             </div>
             <div data-role="content" data-theme = "b" style="padding: 15px">
                 <div data-role="fieldcontain">
-                    <label for="name">Sort By</label>
                     <fieldset data-role="controlgroup" data-type="horizontal">
-                        <a href="#ScheduleList" data-role="button" data-transition="flip" onclick="switchToScheduleView(); return false;"> 
-                            Schedule View
-                        </a>
-                        <a href="#ClassList" data-role="button" data-transition="flip" onclick="switchToClassView(); return false;"> Class View
-                        </a>
+                        <legend>
+                            Sort by
+                        </legend>
+                        <input name="radiobuttons1" id="scheduleRadio" value="scheduleRadio" type="radio" onclick="switchToScheduleView(); return true;"/>
+                        <label for="scheduleRadio">
+                            Schedule
+                        </label>
+                        <input name="radiobuttons1" id="classRadio" value="classRadio" type="radio" onclick="switchToClassView(); return true;"/>
+                        <label for="classRadio">
+                            Class
+                        </label>
                     </fieldset>
                 </div>
-                <div data-theme="b" id="ScheduleTable">
-                    <script>injectSchedule();</script>
+
+                <!--Draw Scheudule Table-->
+                 <div data-theme="b" id="ClassTable">
+                    <script>switchToScheduleView();</script>
                 </div>
+
             </div>
         </div>
 
         <!-- Schedule List Page -->
         <div data-role="page" id="Dialog">
-            <div data-theme="a" data-role="header">
+            <div data-theme="a" data-role="header" id="CNameHeader">
                 <h3>
                     Dialog!!
                 </h3>
             </div>
-            <div data-role="content" data-theme = "b" style="padding: 15px">
+            <div data-role="content" data-theme="b" style="padding: 15px">
+                <div id="DialogData">
+                </div>
                 <a href="" data-rel="back" data-role="button" data-transition="slide">Close</a> 
             </div>
         </div>
