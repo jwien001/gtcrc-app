@@ -10,7 +10,10 @@
 
 	<html file="app.html"/>
 	<javascript file="app.js"/>
-    <css file="app.css"/>
-    
+  <css file="app.css"/>
+  
+  <html file="schedule.html"/>
+  <javascript file="schedule.js"/>
+  <css file="schedule.css"/>
 	<library name="jquery.mobile"/>
 </widget>
