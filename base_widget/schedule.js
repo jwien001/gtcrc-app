@@ -5,17 +5,22 @@ var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "S
 
 //Getting JSON from the schedule php API
 $(document).ready(function(){
+    $.mobile.changePage("#DisplayPage", "pop", true, true);
     $.getJSON("api/schedule", function(data) {
     
     	//For each object in JSON data, parse into a class and add
     	//to corresponding list.
+    	var index = 0;
         $.each(data, function(){
-            var newClass = new Class(this.ClassName, this.Instructor, 
+            var newClass = new Class(this.ClassName, this.InstructorName, 
                 this.StartDate, this.EndDate, 
                 this.DayOfWeek, this.Time, 
                 this.NumOfHours, this.Location, 
-                this.Description, this.Cost, this.ClassType);
+                this.Description, this.Cost, 
+                this.ClassType,index);
+            index++;
                 
+            console.log(this.Instructor);
             if(newClass.type == "GITFit")
             {
             	window.gfClasses.push(newClass);
@@ -26,8 +31,8 @@ $(document).ready(function(){
             }
         });
         
-        //gfClasses.sort(ClassSortFunction);
-        //instClasses.sort(ClassSortFunction);
+        gfClasses.sort(ClassSortFunction);
+        instClasses.sort(ClassSortFunction);
         switchToScheduleView();
     });
 });
@@ -36,8 +41,39 @@ $(document).ready(function(){
 
 function buildClassListTable() {
 	
-	var outString = "";
+	var outString = '<ul data-role="listview" data-divider-theme="b" data-inset="true">';
 	
+	outString += buildGitFitClasses();
+	outString += buildInstClasses();
+	
+	outString += '</li>';
+	
+	return outString;
+}
+
+function buildGitFitClasses() {
+	var outString = "";
+	outString += '<li data-role="list-divider" role="heading">G.I.TFit classes</li>';
+	
+	for(instC = 0; instC < instClasses.length; instC++) {
+		var tClass = gfClasses[instC];
+		outString += '<li data-theme="a"> <a data-rel="dialog" data-transition="slide" onclick="showDialog('+tClass.id+');" return true;>';
+		outString += tClass.name;
+		outString += '</a> </li>';
+	}
+	return outString;
+}
+
+function buildInstClasses() {
+	var outString = "";
+	outString += '<li data-role="list-divider" role="heading">Instructional classes</li>';
+	
+	for(instC = 0; instC < instClasses.length; instC++) {
+		var tClass = instClasses[instC];
+		outString += '<li data-theme="a"> <a data-rel="dialog" data-transition="slide" onclick="showDialog('+tClass.id+');" return true;>';
+		outString += tClass.name;
+		outString += '</a> </li>';
+	}
 	return outString;
 }
 
@@ -67,9 +103,9 @@ function buildDaySchedule(day) {
 
 	var outString = "";
 	for(cod = 0; cod < classesOnDay.length; cod++) {
-	
-		outString += '<li data-theme="a"> <a data-rel="dialog" data-transition="slide" onclick="showDialog();" return true;>';
-		outString += classesOnDay[cod].name;
+		var tClass = classesOnDay[cod];
+		outString += '<li data-theme="a"> <a data-rel="dialog" data-transition="slide" onclick="showDialog('+tClass.id+');" return true;>';
+		outString += tClass.name;
 		outString += '</a> </li>';
 	
 	}
@@ -87,7 +123,6 @@ function getClassesForDay(day) {
 		var tClass = gfClasses[gClass];
 		if(tClass.dayOfWeek == day) {
 			classesOnDay.push(tClass);
-			console.log("Day " + day + " " + tClass.name);
 		}
 	}
 	
@@ -96,86 +131,13 @@ function getClassesForDay(day) {
 		var tClass = instClasses[iClass];
 		if(tClass.dayOfWeek == day) {
 			classesOnDay.push(tClass);
-			console.log("Day " + day + " " + tClass.name);
 		}
 	}
-	
-	console.log("Return classes size: " + classesOnDay.length);
 	return classesOnDay;
 }
 //End Schedule Code Section
 
-/* = [new Class("Indoor Cycling", "Monday"),
-                new Class("Indoor Cycling", "Friday"), 
-                new Class("Zumba", "Wednesday"),
-                new Class("Urban Dance Grooves", "Tuesday"),
-                new Class("Cardio Kickboxing", "Monday"), 
-                new Class("Cycling/Abs", "Wednesday"),
-                new Class("TreadFit", "Thursday"),
-                new Class("Cycle/Yoga", "Friday"),
-                new Class("Ripped Extreme", "Saturday"), 
-                new Class("Weekend Ride", "Sunday")];
-
-var instClasses = [new Class("H.E.A.T Boxing", "Sunday"), 
-                new Class("Advanced Boxing", "Monday"),
-                new Class("Hatha Yoga", "Thursday"),
-                new Class("Pilates", "Saturday"), 
-                new Class("Vinyasa/ Posture Focus Yoga", "Friday")];*/
-
-function injectGITFitClasses() {
-    var out;
-    out='<ul data-role="listview" data-divider-theme="b" data-inset="true">';
-    for(i = 0; i < gfClasses.length; i++) {
-        var cl = gfClasses[i];
-        out+='<li data-theme="a"> <a data-transition="slide" onclick="showDialog()"; return true;>' + cl.name + '</a> </li>';
-    }
-    out+= '</ul>';
-    return out;
-}
-
-function injectGITFitClassesForDay(gfDay) {
-        for(gf = 0; gf < gfClasses.length; gf++) {
-        var gfcl = gfClasses[gf];
-        if(gfcl.day == gfDay) {
-            document.write('<li data-theme="a"> <a data-rel="dialog" data-transition="slide" onclick=showDialog(); return true;>' + gfcl.name + '</a> </li>');
-        }
-    }
-}
-
-function injectInstructionalClasses() {
-    for(i = 0; i < instClasses.length; i++) {
-        var cl = instClasses[i];
-        document.write('<li data-theme="a"> <a data-rel="dialog" data-transition="slide onclick=showDialog(); return true;">' + cl.name + '</a> </li>');
-    }
-}
-
-function injectInstructionalClassesForDay(instDay) {
-    for(ic = 0; ic < instClasses.length; ic++) {
-        var instcl = instClasses[ic];
-        if(instcl.day == instDay) {
-            document.write('<li data-theme="a"> <a data-transition="slide onclick=showDialog(); return true;">' + instcl.name + '</a> </li>');
-        }
-    }
-}
-
-function injectSchedule() {
-    document.write('<ul data-role="listview" data-divider-theme="b" data-inset="true">');
-    for(d = 0; d < days.length; d++) {
-        var day = days[d];
-        document.write('<li data-role="list-divider" role="heading">');
-        document.write(day);
-        document.write('</li>');
-        injectClassesForDay(day);
-    }
-    document.write('</ul>');
-}
-
-function injectClassesForDay(day) {
-    injectGITFitClassesForDay(day);
-    injectInstructionalClassesForDay(day);
-}
-
-function Class(name, instructor, startDate, endDate, dayOfWeek, time, numOfHours, location, description, cost, type) {
+function Class(name, instructor, startDate, endDate, dayOfWeek, time, numOfHours, location, description, cost, type, id) {
     this.name = name;
     this.instructor = instructor;
     this.startDate = startDate;
@@ -187,27 +149,81 @@ function Class(name, instructor, startDate, endDate, dayOfWeek, time, numOfHours
     this.description = description;
     this.cost = cost;
     this.type = type;
+    this.id = id;
 }
 
 function ClassSortFunction(a,b) {
-	return (a.name).compareTo(b.name);
+	var lowerA = a.name.toLowerCase();
+	var lowerB = b.name.toLowerCase();
+	if(lowerA < lowerB) {
+		return -1;
+	}
+	else if(lowerA > lowerB) {
+		return 1;
+	}
+	return 0;
 }
 
-//Need to reload tables.
+//Need to switch and reload tables.
 function switchToScheduleView() {
     element = document.getElementById('ClassTable');
     element.innerHTML = buildScheduleTable();
+    
+    $('#ClassTable').html(buildScheduleTable()).trigger('create');
 }
 
 function switchToClassView() {
     element = document.getElementById('ClassTable');
     element.innerHTML = buildClassListTable();
+
+	$('#ClassTable').html(buildClassListTable()).trigger('create');
 }
 
-function showDialog(name) {
-    element = document.getElementById('CNameHeader');
-    element.innerHTML = "<h3>"+name+"</h3>";
-    element = document.getElementById('DialogData');
-    element.innerHTML = "Class details here";
+function findClassByIndex(index) {
+	var found = null;
+	
+	for(i = 0; i < gfClasses.length; i++) {
+		var tClass = gfClasses[i];
+		if(index == tClass.id) {
+			found = tClass;
+			break;
+		}
+	}
+	
+	for(j = 0; j < instClasses.length; j++) {
+		var tClass = instClasses[j];
+		if(index == tClass.id) {
+			found = tClass;
+			break;
+		}
+	}
+	return found;
+}
+
+//Dialog Code
+function showDialog(index) {
+
+	console.log("dialog");
+
+	var tClass = findClassByIndex(index);
+	console.log("looking for: " + index);
+	console.log("Got: " + tClass.id);
+	
+	$('#CNameHeader').html("<h3>"+tClass.name+"</h3>").trigger('create');
+	
+	$('#DialogData').html("<h4>Instructor: " + tClass.instructor + "</h4>");
+	$('#DialogData').append("<h4>Dates: " + tClass.startDate+ " to " + tClass.endDate + "</h4>");
+	
+	var day = days[tClass.dayOfWeek];
+	$('#DialogData').append("<h4>Day: " + day + "</h4>");
+	
+	$('#DialogData').append("<h4>Time: " + tClass.time + "</h4>");
+	$('#DialogData').append("<h4>Location: " + tClass.location + "</h4>");	
+	$('#DialogData').append("<h4>Cost: $" + tClass.cost + "</h4>");
+	$('#DialogData').append("<h4>Description: </br>" + tClass.description + "</h4>");
+	
+	$('#CNameHeader').trigger('create');
+	$('#DialogData').trigger('create');
+	
     $.mobile.changePage("#Dialog", "pop", true, true);
 }
