@@ -52,4 +52,16 @@
 		</get>
 	</command>
 	
+	<command id='building_hours' security='public'>
+		<description><![CDATA[This API lets you interact with the CRC building hours DB]]></description>
+		<index>
+			<description><![CDATA[This is how you can get the information about all the entered building hours info from today.]]></description>
+			<action file='building_hours.php'><![CDATA[getAllBuildingHoursInfo();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get the info about building hours on a given date.]]></description>
+			<action file='building_hours.php'><![CDATA[getBuildingHoursByDate($_REST['building_hours']);]]></action>
+		</get>
+	</command>
+	
 </api>
