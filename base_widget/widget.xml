@@ -8,12 +8,20 @@
     <javascript file="jqplot.categoryAxisRenderer.js"/>
     <css file="jquery.jqplot.css"/>
 
+    <!-- App home page -->
 	<html file="app.html"/>
 	<javascript file="app.js"/>
-  <css file="app.css"/>
-  
-  <html file="schedule.html"/>
-  <javascript file="schedule.js"/>
-  <css file="schedule.css"/>
+    <css file="app.css"/>
+    
+    <!-- Busyness page -->  
+    <html file="busyness.html"/>
+    <javascript file="busyness.js"/>
+    <css file="busyness.css"/>
+    
+    <!-- Class schedule page -->
+    <html file="schedule.html"/>
+    <javascript file="schedule.js"/>
+    <css file="schedule.css"/>
+      
 	<library name="jquery.mobile"/>
 </widget>

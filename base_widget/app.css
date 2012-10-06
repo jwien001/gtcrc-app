@@ -1,7 +1,0 @@
-.busyness_indicator {
-    padding-left: 1em;
-}
-
-.busyness_indicator.notBusy {
-    color: green;
-}
