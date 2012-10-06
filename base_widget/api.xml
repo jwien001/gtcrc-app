@@ -72,7 +72,7 @@
 		</index>
 		<get>
 			<description><![CDATA[This is how you can get next N upcoming events from today onwards.]]></description>
-			<action file='upcoming_events.php'><![CDATA[getBuildingHoursByDate($_REST['upcoming_events']);]]></action>
+			<action file='upcoming_events.php'><![CDATA[getNextNUpcomingEvents($_REST['upcoming_events']);]]></action>
 		</get>
 	</command>
 	
