@@ -70,4 +70,36 @@ function getDBResultInserted($dbQuery,$id){
 		die(mysql_error());
 	}
 }
+
+function getDBResultsArrayOrNull($dbQuery){
+	$dbResults=mysql_query($dbQuery);
+
+	if(!$dbResults){
+		return;
+	}
+	
+	$resultsArray = array();
+	if(mysql_num_rows($dbResults) > 0){
+		while($row = mysql_fetch_assoc($dbResults)){
+			$resultsArray[] = $row;
+		}	
+	}else{
+		return;
+	}
+	
+	return $resultsArray;
+}
+
+function getDBResultRecordOrNull($dbQuery){
+	$dbResults=mysql_query($dbQuery);
+
+	if(!$dbResults){
+		return;
+	}
+
+	if(mysql_num_rows($dbResults) != 1){
+		return;
+	}
+	return mysql_fetch_assoc($dbResults);
+}
 ?>
