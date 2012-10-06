@@ -64,4 +64,16 @@
 		</get>
 	</command>
 	
+	<command id='upcoming_events' security='public'>
+		<description><![CDATA[This API lets you interact with the CRC upcoming events DB]]></description>
+		<index>
+			<description><![CDATA[This is how you can get all upcoming events from today onwards.]]></description>
+			<action file='upcoming_events.php'><![CDATA[getAllUpcomingEvents();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get next N upcoming events from today onwards.]]></description>
+			<action file='upcoming_events.php'><![CDATA[getBuildingHoursByDate($_REST['upcoming_events']);]]></action>
+		</get>
+	</command>
+	
 </api>
