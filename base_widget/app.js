@@ -69,6 +69,13 @@ $(function() {
 			chart.replot({clear: true, resetAxes:true});
 	});
 
+	$('#Dialog').bind('pagebeforeshow', function() {
+		if(gfClasses.length == 0 && 
+			instClasses.length == 0) {
+			$.mobile.changePage('#SchedulePage', 'pop', true, true);
+		}
+	});
+
 	$('#SchedulePage').bind('pagebeforeshow',function(event, ui) {
 	$.mobile.changePage("#DisplayPage", "pop", true, true);
 	gfClasses = [];
@@ -288,15 +295,10 @@ function findClassByIndex(index) {
 //Dialog Code
 function showDialog(index) {
 
-	console.log("dialog");
-
 	var tClass = findClassByIndex(index);
-	console.log("looking for: " + index);
-	console.log("Got: " + tClass.id);
 	
-	$('#CNameHeader').html("<h3>"+tClass.name+"</h3>").trigger('create');
-	
-	$('#DialogData').html("<h4>Instructor: " + tClass.instructor + "</h4>");
+	$('#DialogData').html("<h4>Name: " + tClass.name + "</h4>");
+	$('#DialogData').append("<h4>Instructor: " + tClass.instructor + "</h4>");
 	$('#DialogData').append("<h4>Dates: " + tClass.startDate+ " to " + tClass.endDate + "</h4>");
 	
 	var day = days[tClass.dayOfWeek];
