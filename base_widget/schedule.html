@@ -1,71 +1,54 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>
-        </title>
+<!-- Index Page -->
+<div data-role="page" id="SchedulePage">
+    <div data-theme="a" data-role="header" id="PageHeader">
+        <h3>
+            CRC Classes
+        </h3>
+        <a href="#home_page" data-transition="fade" data-icon="arrow-l" class="ui-btn-left">Back</a>
+    </div>
+    <div data-role="content" data-theme = "b" style="padding: 15px">
+        <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup" data-type="horizontal">
+                <legend>
+                    Sort by
+                </legend>
+                <input name="radiobuttons1" id="scheduleRadio" value="scheduleRadio" type="radio" onclick="switchToScheduleView(); return true;"/>
+                <label for="scheduleRadio">
+                    Schedule
+                </label>
+                <input name="radiobuttons1" id="classRadio" value="classRadio" type="radio" onclick="switchToClassView(); return true;"/>
+                <label for="classRadio">
+                    Class
+                </label>
+            </fieldset>
+        </div>
 
-        <!--CSS Links-->
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
-        <link rel="stylesheet" href="schedule.css" />
+        <!--Draw Scheudule Table-->
+         <div data-theme="b" id="ClassTable">
+            <script></script>
+        </div>
+
+    </div>
+</div>
+
+<!-- Schedule List Page -->
+<div data-role="page" id="Dialog">
+    <div data-theme="a" data-role="header" id="CNameHeader">
+        <h3>
+            Class Details
+        </h3>
+    </div>
+    <div data-role="content" data-theme="b" style="padding: 15px" >
+        <div id="DialogData">
         
-        <!--JQuery Mobile Links-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js">
-        </script>
-
-        <!--Java script Links-->
-        <script src="schedule.js"> </script>
-    </head>
-    <body>
-        <!-- Index Page -->
-        <div data-role="page" id="DisplayPage">
-            <div data-theme="a" data-role="header" id="PageHeader">
-                <h3>
-                    CRC Classes
-                </h3>
-                <a href="" data-icon="home" class="ui-btn-left">Home</a>
-            </div>
-            <div data-role="content" data-theme = "b" style="padding: 15px">
-                <div data-role="fieldcontain">
-                    <fieldset data-role="controlgroup" data-type="horizontal">
-                        <legend>
-                            Sort by
-                        </legend>
-                        <input name="radiobuttons1" id="scheduleRadio" value="scheduleRadio" type="radio" onclick="switchToScheduleView(); return true;"/>
-                        <label for="scheduleRadio">
-                            Schedule
-                        </label>
-                        <input name="radiobuttons1" id="classRadio" value="classRadio" type="radio" onclick="switchToClassView(); return true;"/>
-                        <label for="classRadio">
-                            Class
-                        </label>
-                    </fieldset>
-                </div>
-
-                <!--Draw Scheudule Table-->
-                 <div data-theme="b" id="ClassTable">
-                    <script></script>
-                </div>
-
-            </div>
         </div>
+        <a href="" data-rel="back" data-role="button" data-transition="slide">Close</a> 
+    </div>
+</div>
 
-        <!-- Schedule List Page -->
-        <div data-role="page" id="Dialog">
-            <div data-theme="a" data-role="header" id="CNameHeader">
-                <h3>
-                    Dialog!!
-                </h3>
-            </div>
-            <div data-role="content" data-theme="b" style="padding: 15px" >
-                <div id="DialogData">
-                
-                </div>
-                <a href="" data-rel="back" data-role="button" data-transition="slide">Close</a> 
-            </div>
-        </div>
-    </body>
-</html>
+<div data-role="dialog" id="error_dialog" >
+    <div data-role="header" data-position="inline" data-theme='d'>
+        <h1 role="heading">Error</h1>
+    </div>
+    <div id="error_dialog_content" data-role="content"></div>
+</div>

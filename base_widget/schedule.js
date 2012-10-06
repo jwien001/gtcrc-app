@@ -1,41 +1,50 @@
+$(function() {
+	$('#Dialog').bind('pagebeforeshow', function() {
+		if(gfClasses.length == 0 && 
+			instClasses.length == 0) {
+			$.mobile.changePage('#SchedulePage', 'pop', true, true);
+		}
+	});
+
+	$('#SchedulePage').bind('pagebeforeshow',function(event, ui) {
+		gfClasses = [];
+		instClasses = [];
+	    $.getJSON("api/schedule", function(data) {
+	    
+	    	//For each object in JSON data, parse into a class and add
+	    	//to corresponding list.
+	    	var index = 0;
+	        $.each(data, function(){
+	            var newClass = new Class(this.ClassName, this.InstructorName, 
+	                this.StartDate, this.EndDate, 
+	                this.DayOfWeek, this.Time, 
+	                this.NumOfHours, this.Location, 
+	                this.Description, this.Cost, 
+	                this.ClassType,index);
+	            index++;
+	                
+	            if(newClass.type == "GITFit")
+	            {
+	            	window.gfClasses.push(newClass);
+	            }
+	            else
+	            {
+	            	window.instClasses.push(newClass);
+	            }
+	        });
+	        
+	        gfClasses.sort(ClassSortFunction);
+	        instClasses.sort(ClassSortFunction);
+	        switchToScheduleView();
+	    });
+	});
+});
+
 var gfClasses = [];
 var instClasses = [];
 var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-
-//Getting JSON from the schedule php API
-$(document).ready(function(){
-    $.mobile.changePage("#DisplayPage", "pop", true, true);
-    $.getJSON("api/schedule", function(data) {
-    
-    	//For each object in JSON data, parse into a class and add
-    	//to corresponding list.
-    	var index = 0;
-        $.each(data, function(){
-            var newClass = new Class(this.ClassName, this.InstructorName, 
-                this.StartDate, this.EndDate, 
-                this.DayOfWeek, this.Time, 
-                this.NumOfHours, this.Location, 
-                this.Description, this.Cost, 
-                this.ClassType,index);
-            index++;
-                
-            console.log(this.Instructor);
-            if(newClass.type == "GITFit")
-            {
-            	window.gfClasses.push(newClass);
-            }
-            else
-            {
-            	window.instClasses.push(newClass);
-            }
-        });
-        
-        gfClasses.sort(ClassSortFunction);
-        instClasses.sort(ClassSortFunction);
-        switchToScheduleView();
-    });
-});
+var crcBuildings = [];
 
 //Class List Building Code Section
 
@@ -203,15 +212,10 @@ function findClassByIndex(index) {
 //Dialog Code
 function showDialog(index) {
 
-	console.log("dialog");
-
 	var tClass = findClassByIndex(index);
-	console.log("looking for: " + index);
-	console.log("Got: " + tClass.id);
 	
-	$('#CNameHeader').html("<h3>"+tClass.name+"</h3>").trigger('create');
-	
-	$('#DialogData').html("<h4>Instructor: " + tClass.instructor + "</h4>");
+	$('#DialogData').html("<h4>Name: " + tClass.name + "</h4>");
+	$('#DialogData').append("<h4>Instructor: " + tClass.instructor + "</h4>");
 	$('#DialogData').append("<h4>Dates: " + tClass.startDate+ " to " + tClass.endDate + "</h4>");
 	
 	var day = days[tClass.dayOfWeek];
@@ -226,4 +230,21 @@ function showDialog(index) {
 	$('#DialogData').trigger('create');
 	
     $.mobile.changePage("#Dialog", "pop", true, true);
+}
+
+function Building(name, hours) {
+	this.name = name;
+	this.hours = hours;
+}
+
+function buildBuildingHours() {
+	var string = '<textarea name="" rows="'+crcBuildings.length*10+'"	 id="BuildingHoursData" placeholder="">';
+	for(i = 0; i < crcBuildings.length; i++) {
+		string += crcBuildings[i].name;
+		string += '\n\t';
+		string += crcBuildings[i].hours;
+		string += '\n';
+	}
+	string += '</textarea>';
+	$('#BuildingHours').html(string).trigger('create');
 }
