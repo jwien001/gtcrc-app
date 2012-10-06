@@ -42,9 +42,6 @@ $(function() {
 
 var gfClasses = [];
 var instClasses = [];
-var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-var crcBuildings = [];
 
 //Class List Building Code Section
 
@@ -230,21 +227,4 @@ function showDialog(index) {
 	$('#DialogData').trigger('create');
 	
     $.mobile.changePage("#Dialog", "pop", true, true);
-}
-
-function Building(name, hours) {
-	this.name = name;
-	this.hours = hours;
-}
-
-function buildBuildingHours() {
-	var string = '<textarea name="" rows="'+crcBuildings.length*10+'"	 id="BuildingHoursData" placeholder="">';
-	for(i = 0; i < crcBuildings.length; i++) {
-		string += crcBuildings[i].name;
-		string += '\n\t';
-		string += crcBuildings[i].hours;
-		string += '\n';
-	}
-	string += '</textarea>';
-	$('#BuildingHours').html(string).trigger('create');
 }

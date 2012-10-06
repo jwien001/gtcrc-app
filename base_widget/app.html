@@ -10,16 +10,23 @@
             </a>
             <span class="busyness_indicator"></span>
         </div>
-        <div data-role="fieldcontain">
-            <fieldset data-role="controlgroup">
-                <label for="textarea1">
-                  Building Hours
-                </label>
-                <div id="BuildingHours">
-
-            	</div>
-            </fieldset>
-        </div>
+        
+        <br/>
+        
+        <div id="BuildingHours">
+            <table>
+                <caption>
+                    <button id="hoursPrevDay" data-inline="true" data-icon="arrow-l" data-iconpos="notext" data-theme="b"></button>
+                    <h4 id="hoursDate" class="inline">Today</h4>
+                    <button id="hoursNextDay" data-inline="true" data-icon="arrow-r" data-iconpos="notext" data-theme="b"></button>
+                </caption>
+                <tbody id="buildingHoursBody">
+                </tbody>
+            </table>
+    	</div>
+        
+        <br/>
+        
         <a data-role="button" data-icon="arrow-r" data-iconpos="right" data-transition="fade" href="#page1">
             Announcements (X)
         </a>

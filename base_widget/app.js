@@ -3,6 +3,7 @@ $(function() {
 		$.ajax({
             url: 'api/busyness',
     		context: document.body,
+            async: true,
             success: function(data, textStatus, jqXHR) {
                     console.log(data);
                     $('.busyness_indicator').attr('class', 'busyness_indicator notBusy');
@@ -11,21 +12,58 @@ $(function() {
             error: ajaxError
 		});
 		
-		var today = new Date();
-		var dd = today.getDate();
-		var mm = today.getMonth()+1;
-		var yyyy = today.getFullYear();
-		var dateToken = yyyy+"-"+mm+"-"+dd;
-		crcBuildings = [];
-		$.getJSON("api/building_hours/"+dateToken, function(data) { 
-			$.each(data, function(){
-				var building = new Building(this.Section_Name, this.Hours);
-				crcBuildings.push(building);
-			});
-			buildBuildingHours();
-		});
+		updateBuildingHours();
+	});
+	
+	$('#hoursPrevDay').bind('click', function(event, ui) {
+		hoursDate.setDate(hoursDate.getDate() - 1);
+		updateBuildingHours();
+	});
+	
+	$('#hoursNextDay').bind('click', function(event, ui) {
+		hoursDate.setDate(hoursDate.getDate() + 1);
+		updateBuildingHours();
 	});
 });
+
+var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+var months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+var hoursDate = new Date();
+
+function formatDate(date) {
+	var dd = date.getDate();
+	var mm = date.getMonth()+1;
+	var yyyy = date.getFullYear();
+	return yyyy+"-"+mm+"-"+dd;
+}
+
+function formatDatePretty(date) {
+	var today = new Date();
+	if (date.getFullYear() == today.getFullYear() 
+			&& date.getMonth() == today.getMonth()
+            && date.getDate() == today.getDate()) {
+		return "Today";
+	}
+	
+	return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+}
+
+function updateBuildingHours() {
+	$('#hoursDate').html(formatDatePretty(hoursDate)).trigger('create');
+	$.getJSON("api/building_hours/" + formatDate(hoursDate), function(data) {
+		var outString = '';
+		
+		for(i = 0; i < data.length; i++) {
+			outString += '<tr>';
+			outString += '<th scope="row">' + data[i].Section_Name + '</th>';
+			outString += '<td>' + data[i].Hours + '</td>';
+			outString += '</tr>';
+		}
+		
+		$('#buildingHoursBody').html(outString).trigger('create');
+	});
+}
 
 function ajaxError(jqXHR, textStatus, errorThrown) {
 	console.log('ajaxError ' + textStatus + ' ' + errorThrown);
