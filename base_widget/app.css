@@ -2,6 +2,7 @@
     text-align: left;
     margin-left: auto;
     margin-right: auto;
+    border-spacing: 0;
 }
 
 .inline {
@@ -9,5 +10,13 @@
 }
 
 #BuildingHours table th {
-    padding-right: 20px;
+    padding: 3px 20px 3px 3px;
+}
+
+#BuildingHours table td {
+    padding: 3px;
+}
+
+#BuildingHours tr:nth-child(odd) {
+  background-color: white;
 }

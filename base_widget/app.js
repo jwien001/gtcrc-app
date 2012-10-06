@@ -46,7 +46,7 @@ function formatDatePretty(date) {
 		return "Today";
 	}
 	
-	return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+	return days[date.getDay()] + " " + months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
 }
 
 function updateBuildingHours() {
