@@ -10,7 +10,7 @@
       $current_timestamp=date("HmdY");
       $dbQuery = sprintf("SELECT count FROM CRC_Turnstile_Info WHERE dttm = '%s'",
                         mysql_real_escape_string($current_timestamp));
-      $result=getDBResultRecord($dbQuery);
+      $result=getDBResultRecordOrNull($dbQuery);
       header("Content-type: application/json");
       echo json_encode($result);
    }
@@ -39,7 +39,7 @@
       foreach($hours as $hour) {
          $dbQuery = sprintf("SELECT AVG(count) FROM CRC_Turnstile_Info WHERE dttm like '%s' OR dttm like '%s'",
                         mysql_real_escape_string($hour . $first_date), mysql_real_escape_string($hour . $second_date));
-         $result = array_merge($result,getDBResultsArray($dbQuery));
+         $result = array_merge($result,getDBResultsArrayOrNull($dbQuery));
       }
       
       header("Content-type: application/json");
