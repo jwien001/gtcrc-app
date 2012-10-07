@@ -1,5 +1,5 @@
 $(function() {
-	$('#events_page').bind('pagebeforeshow',function(event, ui) {
+	$('#events_page').bind('pageshow',function(event, ui) {
 		// Initially load 5 events
         loadEventList(5);
 	});
@@ -36,8 +36,10 @@ function buildEventList(data) {
 		outString += '<span class="ui-li-aside">'
 		outString += new Date(data[i].Date + 'T23:00:00').toDateString();
 		outString += '</span>';
-		outString += '<p>' + data[i].Event_Location + '</p>';
-		outString += '<p>' + data[i].Event_Time + '</p>';
+		if (data[i].Event_Location != null)
+			outString += '<p>' + data[i].Event_Location + '</p>';
+		if (data[i].Event_Time != null)
+			outString += '<p>' + data[i].Event_Time + '</p>';
 		outString += '</li>';
 	}
 	
