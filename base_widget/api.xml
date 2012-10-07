@@ -86,8 +86,6 @@
 			<description><![CDATA[This is how you can request ALL or VALID Announcements based on GET parameter.]]></description>
 			<action file='announcements.php'><![CDATA[getAnnouncements($_REST['announcements']);]]></action>
 		</get>
-		<get>
-		</get>
 	</command>
 
 
