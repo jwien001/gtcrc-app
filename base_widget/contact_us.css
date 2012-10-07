@@ -5,3 +5,7 @@
 .contactList span.ui-li-aside {
     width: 7em;
 }
+
+.contactList h3 {
+    white-space: normal;
+}

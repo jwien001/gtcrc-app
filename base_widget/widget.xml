@@ -21,6 +21,7 @@
     <!-- Upcoming Events page -->  
     <html file="upcoming_events.html"/>
     <javascript file="upcoming_events.js"/>
+    <css file="upcoming_events.css"/>
     
     <!-- Class schedule page -->
     <html file="schedule.html"/>
