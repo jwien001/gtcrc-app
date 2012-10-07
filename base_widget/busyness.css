@@ -1,7 +1,29 @@
+table.busyness_table {
+    width: 100%;
+}
+
+table.busyness_table tbody tr td:first-child {
+    width: 8em;
+}
+
 .busyness_indicator {
-    padding-left: 1em;
+    border-radius: 4px;
+    padding: 5px 5px 5px 10px;
+    color: white;
 }
 
 .busyness_indicator.notBusy {
-    color: green;
+    background-color: lawngreen;
+}
+
+.busyness_indicator.busy {
+    background-color: gold;
+}
+
+.busyness_indicator.veryBusy {
+    background-color: crimson;
+}
+
+.busyness_indicator.unavailable {
+    background-color: silver;
 }

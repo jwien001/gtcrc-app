@@ -4,12 +4,21 @@
     </div>
     
     <div data-role="content" style="padding: 15px">
-        <div>
-            <span>
-                How busy is it?
-            </span>
-            <span class="busyness_indicator"></span>
-        </div>        
+        <table class="busyness_table">
+            <tbody>
+                <tr>
+                    <td>
+                        <span>
+                            How busy is it?
+                        </span>
+                    </td>
+                    <td>                            
+                        <div class="busyness_indicator"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+          
         <fieldset data-role="controlgroup" data-type="horizontal">
             <input type="radio" name="busynessDate" id="monButton" value="1"/>
             <label for="monButton">Mon</label>

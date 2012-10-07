@@ -3,11 +3,26 @@ $(function() {
 		$.ajax({
             url: 'api/busyness',
     		context: document.body,
+            dataType: "json",
             async: true,
             success: function(data, textStatus, jqXHR) {
-                    console.log(data);
-                    $('.busyness_indicator').attr('class', 'busyness_indicator notBusy');
-                    $('.busyness_indicator').html('Not Busy');
+            		var cls;
+            		var text;
+                    if (data.count > 90) {
+                    	cls = 'veryBusy';
+                    	text = 'Very Busy';
+                    } else if (data.count > 45) {
+                    	cls = 'busy';
+                    	text = 'Busy';
+                    } else if (data.count >= 0) {
+                    	cls = 'notBusy';
+                    	text = 'Not Busy';
+                    } else {
+                    	cls = 'unavailable';
+                    	text = 'Unavailable';
+                    }
+                    $('.busyness_indicator').attr('class', 'busyness_indicator ' + cls);
+                    $('.busyness_indicator').html(text);
             },
             error: ajaxError
 		});
