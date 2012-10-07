@@ -8,7 +8,8 @@
     {
         $dbQuery = sprintf("SELECT * FROM `CRC_Announcements_Info` WHERE StartDate <= CURDATE() && EndDate >= CURDATE()");
         $result = mysql_num_rows(getDBResultsArray($dbQuery));
-        echo $result;
+        header("Content-type: application/json");
+        echo json_encode($result);
     }
 
     // Return announcements based on GET flag
