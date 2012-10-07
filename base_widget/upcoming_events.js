@@ -36,7 +36,8 @@ function buildEventList(data) {
 		outString += '<span class="ui-li-aside">'
 		outString += new Date(data[i].Date + 'T23:00:00').toDateString();
 		outString += '</span>';
-		outString += '<p>' + data[i].Event_Description + '</p>';
+		outString += '<p>' + data[i].Event_Location + '</p>';
+		outString += '<p>' + data[i].Event_Time + '</p>';
 		outString += '</li>';
 	}
 	
