@@ -8,6 +8,7 @@
     {
         $dbQuery = sprintf("SELECT count(*) FROM CRC_Announcements_Info WHERE StartDate <= CURDATE() AND EndDate >= CURDATE()");
         $result = getDBResultRecord($dbQuery);
+        // Return data payload as JSON
         header("Content-type: application/json");
         echo json_encode($result);
     }
