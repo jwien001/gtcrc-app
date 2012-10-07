@@ -3,31 +3,32 @@
     // Include DB helper file for connecting to database
     include 'db_helper.php';
 
-    // Return VALID announcements
-    function getValidAnnouncements()
-    {
-        $dbQuery = sprintf("SELECT * FROM `CRC_Announcements_Info` WHERE StartDate <= CURDATE() && EndDate >= CURDATE() ORDER BY StartDate");
-        $result = getDBResultsArray($dbQuery);
-        header("Content-type: application/json");
-        echo json_encode($result);
-    }
-
-    // Return ALL announcements
-    function getAllAnnouncements()
-    { 
-        $dbQuery = sprintf("SELECT * FROM `CRC_Announcements_Info` ORDER BY StartDate");
-        $result = getDBResultsArray($dbQuery);
-        header("Content-type: application/json");
-        echo json_encode($result);
-    }
-
     // Return number of VALID announcements
     function getNumberOfAnnouncements()
     {
         $dbQuery = sprintf("SELECT * FROM `CRC_Announcements_Info` WHERE StartDate <= CURDATE() && EndDate >= CURDATE()");
+        $result = mysql_num_rows(getDBResultsArray($dbQuery));
+        echo $result;
+    }
+
+    // Return announcements based on GET flag
+    function getAnnouncements($all)
+    { 
+        if($all === TRUE) // Since we're dealing with boolean checks, use === instead of ==
+        {
+            // Request for ALL announcements
+            $dbQuery = sprintf("SELECT * FROM `CRC_Announcements_Info` ORDER BY StartDate");
+        }
+        else
+        {
+            // Request for VALID announcements based on date
+            $dbQuery = sprintf("SELECT * FROM `CRC_Announcements_Info` WHERE StartDate <= CURDATE() && EndDate >= CURDATE() ORDER BY StartDate");
+        }
         $result = getDBResultsArray($dbQuery);
-        $num_announcements = mysql_num_rows($result);       
-        echo $num_announcements;
+        
+        // Return data payload as JSON
+        header("Content-type: application/json");
+        echo json_encode($result);
     }
 
 ?>

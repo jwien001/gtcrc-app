@@ -79,16 +79,14 @@
 	<command id='announcements' security='public'>
 		<description><![CDATA[This API lets you interact with CRC Announcements.]]></description>
 		<index>
-			<description><![CDATA[This is how you can get ALL Announcements.]]></description>
-			<action file='announcements.php'><![CDATA[getAllAnnouncements();]]></action>
-		</index>
-		<get>
-			<description><![CDATA[This is how you can get VALID Announcements.]]></description>
-			<action file='announcements.php'><![CDATA[getValidAnnouncements();]]></action>
-		</get>
-		<get>
 			<description><![CDATA[This is how you can get the NUMBER of VALID Announcements.]]></description>
 			<action file='announcements.php'><![CDATA[getNumberOfAnnouncements();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can request ALL or VALID Announcements based on GET parameter.]]></description>
+			<action file='announcements.php'><![CDATA[getAnnouncements($_REST['announcements']);]]></action>
+		</get>
+		<get>
 		</get>
 	</command>
 
