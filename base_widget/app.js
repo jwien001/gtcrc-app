@@ -24,7 +24,10 @@ $(function() {
                     $('.busyness_indicator').attr('class', 'busyness_indicator ' + cls);
                     $('.busyness_indicator').html(text);
             },
-            error: ajaxError
+            error: function(jqXHR, textStatus, errorThrown) {
+            	$('.busyness_indicator').attr('class', 'busyness_indicator unavailable');
+                $('.busyness_indicator').html('Unavailable');
+            }
 		});
 		
 		updateBuildingHours();
@@ -61,7 +64,12 @@ function formatDatePretty(date) {
 		return "Today";
 	}
 	
-	return days[date.getDay()] + " " + months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+	// Javascript days are 0-6, Sun-Sat, so we must convert to our day (1-7, Mon-Sun)
+	var day = date.getDay();
+	if (day == 0)
+		day = 7;
+	
+	return days[--day] + " " + months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
 }
 
 function updateBuildingHours() {
@@ -82,11 +90,10 @@ function updateBuildingHours() {
 
 function ajaxError(jqXHR, textStatus, errorThrown) {
 	console.log('ajaxError ' + textStatus + ' ' + errorThrown);
-	// The code below works, but is commented out for testing so that you can still navigate the page if there's an error
-    /*$('#error_dialog_content').html('<p>An unexpected error occurred<br/>' + textStatus + '<br/>' + errorThrown + '</p>');
+    $('#error_dialog_content').html('<p>An unexpected error occurred<br/>' + textStatus + '<br/>' + errorThrown + '</p>');
     $.mobile.changePage($('#error_dialog'), {
             transition: 'pop',
             reverse: false,
             changeHash: false
-    });*/
+    });
 }
