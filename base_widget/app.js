@@ -30,6 +30,16 @@ $(function() {
             }
 		});
 		
+		$.ajax({
+			url: 'api/announcements',
+    		context: document.body,
+            dataType: "json",
+            async: true,
+            success: function(data, textStatus, jqXHR) {
+            	$('#announcementLink .ui-btn-text').html('Announcements (' + data['count(*)'] + ')');
+            }
+		});
+		
 		updateBuildingHours();
 	});
 	

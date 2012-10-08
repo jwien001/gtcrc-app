@@ -35,6 +35,7 @@
     <!-- Announcements Page -->
     <html file="announcements.html"/>
     <javascript file="announcements.js"/>
+    <css file="announcements.css"/>
       
 	<library name="jquery.mobile"/>
 </widget>
