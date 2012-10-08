@@ -26,7 +26,6 @@
     <!-- Class schedule page -->
     <html file="schedule.html"/>
     <javascript file="schedule.js"/>
-    <css file="schedule.css"/>
     
     <!-- Contact Us page -->  
     <html file="contact_us.html"/>

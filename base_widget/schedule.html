@@ -2,21 +2,21 @@
 <div data-role="page" id="SchedulePage">
     <div data-theme="a" data-role="header" id="PageHeader">
         <h3>
-            CRC Classes
+            Classes
         </h3>
         <a href="#home_page" data-transition="fade" data-icon="arrow-l" class="ui-btn-left">Back</a>
     </div>
-    <div data-role="content" data-theme = "b" style="padding: 15px">
+    <div data-role="content" style="padding: 15px">
         <div data-role="fieldcontain">
             <fieldset data-role="controlgroup" data-type="horizontal">
                 <legend>
                     Sort by
                 </legend>
-                <input name="radiobuttons1" id="scheduleRadio" value="scheduleRadio" type="radio" onclick="switchToScheduleView(); return true;" data-mini="true"/>
+                <input name="radiobuttons1" id="scheduleRadio" value="scheduleRadio" type="radio" onclick="switchToScheduleView(); return true;"/>
                 <label for="scheduleRadio">
                     Schedule
                 </label>
-                <input name="radiobuttons1" id="classRadio" value="classRadio" type="radio" onclick="switchToClassView(); return true;" data-mini="true"/>
+                <input name="radiobuttons1" id="classRadio" value="classRadio" type="radio" onclick="switchToClassView(); return true;"/>
                 <label for="classRadio">
                     Class
                 </label>
@@ -24,8 +24,7 @@
         </div>
 
         <!--Draw Scheudule Table-->
-         <div data-theme="b" id="ClassTable">
-            <script></script>
+         <div id="ClassTable">
         </div>
 
     </div>
@@ -44,11 +43,4 @@
         </div>
         <a href="" data-rel="back" data-role="button" data-transition="slide">Close</a> 
     </div>
-</div>
-
-<div data-role="dialog" id="error_dialog" >
-    <div data-role="header" data-position="inline" data-theme='d'>
-        <h1 role="heading">Error</h1>
-    </div>
-    <div id="error_dialog_content" data-role="content"></div>
 </div>

@@ -47,7 +47,7 @@ var instClasses = [];
 
 function buildClassListTable() {
 	
-	var outString = '<ul data-role="listview" data-divider-theme="b" data-inset="true">';
+	var outString = '<ul data-role="listview" data-divider-theme="a" data-inset="true">';
 	
 	outString += buildGitFitClasses();
 	outString += buildInstClasses();
@@ -63,7 +63,7 @@ function buildGitFitClasses() {
 	
 	for(instC = 0; instC < instClasses.length; instC++) {
 		var tClass = gfClasses[instC];
-		outString += '<li data-theme="a"> <a data-rel="dialog" data-transition="slide" onclick="showDialog('+tClass.id+');" return true;>';
+		outString += '<li data-theme="c"> <a data-rel="dialog" data-transition="slide" onclick="showDialog('+tClass.id+');" return true;>';
 		outString += tClass.name;
 		outString += '</a> </li>';
 	}
@@ -76,7 +76,7 @@ function buildInstClasses() {
 	
 	for(instC = 0; instC < instClasses.length; instC++) {
 		var tClass = instClasses[instC];
-		outString += '<li data-theme="a"> <a data-rel="dialog" data-transition="slide" onclick="showDialog('+tClass.id+');" return true;>';
+		outString += '<li data-theme="c"> <a data-rel="dialog" data-transition="slide" onclick="showDialog('+tClass.id+');" return true;>';
 		outString += tClass.name;
 		outString += '</a> </li>';
 	}
@@ -88,7 +88,7 @@ function buildInstClasses() {
 //Builds string table of GitFit and Inst. Classes.
 function buildScheduleTable() {
 	
-	var outString = '<ul data-role="listview" data-divider-theme="b" data-inset="true">';
+	var outString = '<ul data-role="listview" data-divider-theme="a" data-inset="true">';
 	for(day = 0; day < days.length; day++) {	
 		
 		outString += '<li data-role="list-divider" role="heading">';
@@ -110,7 +110,7 @@ function buildDaySchedule(day) {
 	var outString = "";
 	for(cod = 0; cod < classesOnDay.length; cod++) {
 		var tClass = classesOnDay[cod];
-		outString += '<li data-theme="a"> <a data-rel="dialog" data-transition="slide" onclick="showDialog('+tClass.id+');" return true;>';
+		outString += '<li data-theme="c"> <a data-rel="dialog" data-transition="slide" onclick="showDialog('+tClass.id+');" return true;>';
 		outString += tClass.name;
 		outString += '</a> </li>';
 	
