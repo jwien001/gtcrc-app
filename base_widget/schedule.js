@@ -59,7 +59,7 @@ function buildClassListTable() {
 
 function buildGitFitClasses() {
 	var outString = "";
-	outString += '<li data-role="list-divider" role="heading">G.I.TFit classes</li>';
+	outString += '<li data-role="list-divider" role="heading">G.I.T FIT classes</li>';
 	
 	for(instC = 0; instC < instClasses.length; instC++) {
 		var tClass = gfClasses[instC];
