@@ -17,7 +17,6 @@ $(function() {
 		             '12pm', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
 		var firstTime = $('#chartdiv').children().length === 0;
 		var chart = $.jqplot('chartdiv',  [data.reverse()], {
-			animate: true,
 			seriesDefaults: {
 	        	renderer: $.jqplot.BarRenderer,
 	            rendererOptions: {
