@@ -6,6 +6,11 @@ table.busyness_table tbody tr td:first-child {
     width: 8em;
 }
 
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .busyness_indicator {
     border-radius: 4px;
     padding: 5px 5px 5px 10px;
